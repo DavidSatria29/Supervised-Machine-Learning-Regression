@@ -1,60 +1,60 @@
-# Supervised Machine Learning: Proyek Regresi untuk Prediksi Harga Rumah
+# Supervised Machine Learning: Regression Project for House Price Prediction
 
-Repositori ini berisi proyek akhir untuk kursus IBM "Supervised Machine Learning: Regression". Proyek ini berfokus pada pengembangan, pelatihan, dan evaluasi berbagai model regresi untuk memprediksi harga rumah berdasarkan dataset yang diberikan.
-
----
-
-### Tinjauan Proyek
-
-Tujuan utama proyek adalah untuk membangun dan membandingkan kinerja beberapa model regresi, termasuk **Regresi Linear**, **Regresi Polinomial**, **Ridge**, dan **Lasso**. Proses ini melibatkan alur kerja sistematis mulai dari persiapan data, pelatihan model, penyetelan *hyperparameter*, hingga evaluasi akhir untuk mengidentifikasi model yang paling akurat untuk tugas ini.
+This repository contains the capstone project for the IBM "Supervised Machine Learning: Regression" course. The project focuses on developing, training, and evaluating various regression models to predict house prices based on a given dataset.
 
 ---
 
-### Metodologi
+### Project Overview
 
-Proyek ini mengikuti langkah-langkah utama berikut:
-
-* **Persiapan Data**: Proyek dimulai dengan memuat `house_price_regression_dataset.csv`. Proses pembersihan data yang teliti mengungkapkan bahwa dataset ini sangat bersih, **tidak mengandung nilai yang hilang, data duplikat, atau *outlier***. Oleh karena itu, *feature engineering* yang ekstensif dianggap tidak perlu.
-
-* **Pembagian Data**: Dataset dibagi menjadi 70% set pelatihan dan 30% set pengujian. `random_state` diatur untuk memastikan hasil yang dapat direproduksi.
-
-* **Pelatihan Model dan Penyetelan *Hyperparameter***: Beberapa model dilatih menggunakan `Pipeline` dari `scikit-learn` untuk menstandardisasi alur kerja.
-    * **Regresi Polinomial**: `GridSearchCV` digunakan untuk menemukan derajat polinomial optimal, yang ternyata adalah 1 (secara efektif menjadi model Regresi Linear).
-    * **Regresi Ridge**: `RidgeCV` digunakan untuk secara otomatis menemukan kekuatan regularisasi (`alpha`) terbaik melalui validasi silang 5-lipat (*5-fold cross-validation*).
-    * **Regresi Lasso**: `LassoCV` digunakan dengan cara yang sama untuk mengidentifikasi `alpha` optimal untuk model Lasso.
-
-* **Evaluasi**: Kinerja semua model diukur menggunakan metrik **Root Mean Squared Error (RMSE)**, di mana skor yang lebih rendah menunjukkan model yang lebih baik.
+The primary objective was to build and compare the performance of several regression models, including **Linear Regression**, **Polynomial Regression**, **Ridge**, and **Lasso**. The process involved a systematic workflow from data preparation and model training to hyperparameter tuning and a final evaluation to identify the most accurate model for the task.
 
 ---
 
-### Hasil
+### Methodology
 
-Evaluasi menghasilkan skor RMSE berikut untuk setiap model:
+The project followed these key steps:
+
+* **Data Preparation**: The project began by loading the `house_price_regression_dataset.csv`. A thorough cleaning process was performed, which revealed the dataset was exceptionally clean, containing **no missing values, duplicates, or outliers**. As a result, extensive feature engineering was deemed unnecessary.
+
+* **Data Splitting**: The dataset was split into a 70% training set and a 30% testing set. A `random_state` was set to ensure the reproducibility of the results.
+
+* **Model Training and Hyperparameter Tuning**: Several models were trained using `scikit-learn`'s `Pipeline` to streamline the workflow.
+    * **Polynomial Regression**: `GridSearchCV` was used to find the optimal polynomial degree, which was determined to be 1 (effectively a Linear Regression model).
+    * **Ridge Regression**: `RidgeCV` was employed to automatically find the best regularization strength (`alpha`) through 5-fold cross-validation.
+    * **Lasso Regression**: `LassoCV` was used similarly to identify the optimal `alpha` for the Lasso model, also with 5-fold cross-validation.
+
+* **Evaluation**: The performance of all models was measured using the **Root Mean Squared Error (RMSE)** metric, where a lower score indicates a better fit.
+
+---
+
+### Results
+
+The evaluation yielded the following RMSE scores for each model:
 
 | Model | RMSE |
 | :--- | :--- |
-| **Linear (Polinomial Derajat 1)** | 10113.41 |
-| **Lasso** | 10113.41 |
-| **Ridge** | 10119.21 |
+| **Linear (Polynomial Degree 1)** | 10113.409759 |
+| **Lasso** | 10113.409759 |
+| **Ridge** | 10119.213835 |
 
-* Model **Linear** dan **Lasso** menunjukkan kinerja terbaik dengan skor yang hampir identik.
-* Model **Ridge** sedikit kurang akurat tetapi masih sangat kompetitif.
-* Visualisasi, termasuk plot perbandingan nilai prediksi vs. aktual, mengonfirmasi bahwa semua model mengikuti harga rumah yang sebenarnya dengan sangat dekat.
-
----
-
-### Kesimpulan
-
-Untuk dataset ini, model **Regresi Linear** yang lebih sederhana dan model **Regresi Lasso** terbukti menjadi prediktor harga rumah yang paling efektif. Kinerja yang kuat di semua model menunjukkan bahwa hubungan yang mendasari dalam data sebagian besar bersifat linear.
-
-Namun, penting untuk mempertimbangkan batasan utama proyek: ukuran dataset yang kecil (1000 sampel dan 7 fitur). Hal ini dapat membatasi kemampuan model untuk melakukan generalisasi terhadap data baru yang belum pernah dilihat.
+* The **Linear** and **Lasso** regression models performed the best, with nearly identical scores.
+* The **Ridge** model was slightly less accurate but still highly competitive.
+* Visualizations, including plots of predicted vs. actual values, confirmed that all models tracked the true house prices very closely.
 
 ---
 
-### Langkah Selanjutnya
+### Conclusion
 
-Laporan proyek menyarankan beberapa jalur untuk pekerjaan di masa depan guna meningkatkan kinerja dan ketahanan model:
-* Memperluas dataset dengan lebih banyak sampel dan fitur yang relevan.
-* Melakukan *feature engineering* yang lebih canggih.
-* Menjelajahi model *ensemble* yang lebih kompleks (misalnya, Random Forest, XGBoost).
-* Menerapkan teknik validasi silang yang lebih ketat.
+For this specific dataset, the simpler **Linear Regression** model and the **Lasso Regression** model proved to be the most effective predictors of house prices. he strong performance across all models suggests the underlying relationships in the data are predominantly linear.
+
+However, it is important to consider the project's main limitation: the dataset's small size of 1000 samples and 7 features. This may constrain the models' ability to generalize to new, unseen data.
+
+---
+
+### Next Steps
+
+The project report suggests several avenues for future work to enhance model performance and robustness:
+* Expand the dataset with more samples and relevant features.
+* Conduct more advanced feature engineering.
+* Explore more complex ensemble models (e.g., Random Forest, XGBoost).
+* Implement more rigorous cross-validation techniques, such as repeated K-fold cross-validation, to get more stable performance estimates.
